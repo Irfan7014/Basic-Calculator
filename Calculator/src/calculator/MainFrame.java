@@ -241,7 +241,15 @@ public class MainFrame implements ActionListener
     }
     public void actionPerformed(ActionEvent ae)
     {
-       String s=ae.getActionCommand();
+        if(rboff.isSelected())
+        {
+            disableall(); 
+        }
+        if(rbon.isSelected())
+        {
+            enableall();
+        } 
+        String s=ae.getActionCommand();
         if(ae.getSource()==bdot||ae.getSource()==bzero||ae.getSource()==bone||ae.getSource()==btwo||ae.getSource()==bthree||ae.getSource()==bfour||ae.getSource()==bfive||ae.getSource()==bsix||ae.getSource()==bseven||ae.getSource()==beight||ae.getSource()==bnine)
         { 
             if(!s1.equals(""))
