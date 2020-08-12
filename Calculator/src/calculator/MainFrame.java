@@ -9,7 +9,6 @@ public class MainFrame implements ActionListener
     JTextField screen;
     JLabel lblans;
     ButtonGroup jbg;
-    JRadioButton rbon,rboff;
     JButton bclear,badd,bminus,bmultiply,bdivide,bdot,bequals;  //Symbols and Operators
     JButton bseven,beight,bnine,bfour,bfive,bsix,bone,btwo,bthree,bzero;  //Numbers
     String s0, s1, s2; 
@@ -22,7 +21,7 @@ public class MainFrame implements ActionListener
         jf.setDefaultCloseOperation(WindowConstants. EXIT_ON_CLOSE);
         jf.getContentPane().setBackground(Color.WHITE);
         jf.setResizable(false);
-        jf.setSize(265,377);
+        jf.setSize(275,387);
         jf.setLayout(null);
         jf.setLocation(100,100);
         
@@ -34,37 +33,14 @@ public class MainFrame implements ActionListener
         screen.setBackground(Color.WHITE);
         screen.setHorizontalAlignment(screen.RIGHT);
         screen.setEditable(false);
-        jf.add(screen);
-        
-        //RadioButton Details
-        jbg=new ButtonGroup();
-        rbon=new JRadioButton("ON");
-        rbon.setBounds(5,65,50,15);
-        rbon.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,12));
-        rbon.setForeground(Color.BLACK);
-        rbon.setBackground(Color.WHITE);
-        rbon.addActionListener(this);
-        
-        rboff=new JRadioButton("OFF");
-        rboff.setBounds(5,90,50,15);
-        rboff.setFont(new Font("TIMES_NEW_ROMAN",Font.BOLD,12));
-        rboff.setForeground(Color.BLACK);
-        rboff.setBackground(Color.WHITE);
-        rboff.addActionListener(this);
-        jf.add(rbon);
-        jf.add(rboff);
-        jbg.add(rbon);
-        jbg.add(rboff);
-        rbon.setSelected(true);
-        rbon.setEnabled(false);
-        
+        jf.add(screen);        
         
         //Panel Details
         pmark=new JPanel();
-        pmark.setBounds(70,65,50,40);
+        pmark.setBounds(5,65,115,40);
         pmark.setBackground(Color.BLACK);
-        lblans=new JLabel("H");
-        lblans.setFont(new Font("ARIAL",Font.BOLD,25));
+        lblans=new JLabel("GROUP H");
+        lblans.setFont(new Font("ARIAL",Font.BOLD,22));
         lblans.setForeground(Color.WHITE);
         pmark.add(lblans);
         jf.add(pmark);
@@ -191,99 +167,46 @@ public class MainFrame implements ActionListener
         
         jf.setVisible(true);
     }
-    public void disableall()
-    {
-            rbon.setEnabled(true);
-            rboff.setEnabled(false);
-            screen.setEnabled(false);
-            pmark.setEnabled(true);
-            bclear.setEnabled(false);
-            badd.setEnabled(false);
-            bminus.setEnabled(false);
-            bmultiply.setEnabled(false);
-            bdivide.setEnabled(false);
-            bdot.setEnabled(false);
-            bequals.setEnabled(false);
-            bseven.setEnabled(false);
-            beight.setEnabled(false);
-            bnine.setEnabled(false);
-            bfour.setEnabled(false);
-            bfive.setEnabled(false);
-            bsix.setEnabled(false);
-            bone.setEnabled(false);
-            btwo.setEnabled(false);
-            bthree.setEnabled(false);
-            bzero.setEnabled(false);
-    }
-    public void enableall()
-    {
-            rbon.setEnabled(false);
-            rboff.setEnabled(true);
-            screen.setEnabled(true);        
-            pmark.setEnabled(true);
-            bclear.setEnabled(true);
-            badd.setEnabled(true);
-            bminus.setEnabled(true);
-            bmultiply.setEnabled(true);
-            bdivide.setEnabled(true);
-            bdot.setEnabled(true);
-            bequals.setEnabled(true);
-            bseven.setEnabled(true);
-            beight.setEnabled(true);
-            bnine.setEnabled(true);
-            bfour.setEnabled(true);
-            bfive.setEnabled(true);
-            bsix.setEnabled(true);
-            bone.setEnabled(true);
-            btwo.setEnabled(true);
-            bthree.setEnabled(true);
-            bzero.setEnabled(true);
-    }
     public void actionPerformed(ActionEvent ae)
     {
-        if(rboff.isSelected())
-        {
-            disableall(); 
-        }
-        if(rbon.isSelected())
-        {
-            enableall();
-        } 
         String s=ae.getActionCommand();
         if(ae.getSource()==bdot||ae.getSource()==bzero||ae.getSource()==bone||ae.getSource()==btwo||ae.getSource()==bthree||ae.getSource()==bfour||ae.getSource()==bfive||ae.getSource()==bsix||ae.getSource()==bseven||ae.getSource()==beight||ae.getSource()==bnine)
         { 
+            
             if(!s1.equals(""))
                 s2=s2+s;
             else
                 s0=s0+s;
             screen.setText(s0+s1+s2);
         }
-    else if(ae.getSource()==bclear)
-    {
-        s0=s1=s2="";
-        screen.setText(s0+s1+s2);
-    }
-    else if(ae.getSource()==bequals)
-    {
-        double te;
-        if (s1.equals("+")) 
-            te = (Double.parseDouble(s0) + Double.parseDouble(s2)); 
-        else if (s1.equals("-")) 
-            te = (Double.parseDouble(s0) - Double.parseDouble(s2)); 
-        else if (s1.equals("/")) 
-            te = (Double.parseDouble(s0) / Double.parseDouble(s2)); 
-        else
-            te = (Double.parseDouble(s0) * Double.parseDouble(s2));
-        screen.setText(s0 + s1 + s2 + "=" + te); 
-        s0 = Double.toString(te); 
-        s1 = s2 = "";
-    }
-    else { 
+        else if(ae.getSource()==bclear)
+        {
+            s0=s1=s2="";
+            screen.setText(s0+s1+s2);
+        }
+        else if(ae.getSource()==bequals)
+        {
+            double te;
+            if (s1.equals("+")) 
+                te = (Double.parseDouble(s0) + Double.parseDouble(s2)); 
+            else if (s1.equals("-")) 
+                te = (Double.parseDouble(s0) - Double.parseDouble(s2)); 
+            else if (s1.equals("/")) 
+                te = (Double.parseDouble(s0) / Double.parseDouble(s2)); 
+            else
+                te = (Double.parseDouble(s0) * Double.parseDouble(s2));
+            screen.setText(s0 + s1 + s2 + "=" + te); 
+            s0 = Double.toString(te); 
+            s1 = s2 = "";
+        }
+        else 
+        {
             // if there was no operand 
             if (s1.equals("") || s2.equals("")) 
                 s1 = s; 
             // else evaluate 
-            else { 
+            else 
+            { 
                 double te; 
   
                 // store the value in 1st 
